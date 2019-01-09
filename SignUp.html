@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../favicon.ico">
+
+    <title>Signin Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="signin.css" rel="stylesheet">
+
+    <!-- Intialize Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
+  <script>
+      // Initialize Firebase
+      var config = {
+            apiKey: "AIzaSyCW81p59WUIJGfdx9THboB9FVy9B2X0y0Q",
+            authDomain: "poll-72a8a.firebaseapp.com",
+            databaseURL: "https://poll-72a8a.firebaseio.com",
+            projectId: "poll-72a8a",
+            storageBucket: "poll-72a8a.appspot.com",
+            messagingSenderId: "774262351794"
+      };
+      firebase.initializeApp(config);
+  </script>
+  </head>
+
+  <body class="text-center">
+    <form class="form-signin">
+      <img class="mb-4" src="../../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+      <h1 class="h3 mb-3 font-weight-normal">Sign Up</h1>
+      <label for="mvrEmail" class="sr-only">Email address</label>
+      <input type="email" id="mvrEmail" class="form-control" placeholder="email" >
+      <label for="mvrUsername" class="sr-only">Username</label>
+      <input type="username" id="mvrUsername" class="form-control" placeholder="username" >
+      <label for="mvrName" class="sr-only">Name</label>
+      <input type="name" id="mvrName" class="form-control" placeholder="name" >
+      <label for="mvrDOB" class="sr-only">Date of Birth</label>
+      <input type="DOB" id="mvrDOB" class="form-control" placeholder="DOB" >
+      <label for="mvrSex" class="sr-only">Sex</label>
+      <input type="sex" id="mvrSex" class="form-control" placeholder="sex" >
+      <label for="mvrZipc" class="sr-only">Zip Code</label>
+      <input type="zipc" id="mvrZipc" class="form-control" placeholder="zipc" >
+      <div class="checkbox mb-3">
+        <label>
+          <input type="checkbox" value="remember-me"> Remember me
+        </label>
+      </div>
+      <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="Userinfo();" >Sign up</button>
+      <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
+    </form>
+
+<script>
+var mvrUsername = document.getElementById("username").value.toString();
+var mvrName = document.getElementById("name").value.toString();
+var mvrDOB = document.getElementById("DOB").value.toString();
+var mvrSex = document.getElementById("sex").value.toString();
+var mvrZipc = document.getElementById("zipc").value.toString();
+var mvrEmail = document.getElementById("email").value.toString();
+var mvrPwd = document.getElementById("password").value.toString();
+var _mvrUsername, _mvrName, _mvrDOB, _mvrSex, _mvrZipc, _mvrEmail;
+
+
+function Userinfo() {
+    _mvrUsername = mvrUsername.value;
+    _mvrName = mvrName.value;
+    _mvrDOB = mvrDOB.value;
+    _mvrSex = mvrSex.value;
+    _mvrZipc = mvrZipc.value;
+    _mvrEmail = mvrEmail.value;
+    
+    console.log(_mvrUsername, _mvrName, _mvrDOB, _mvrSex, _mvrZipc, _mvrEmail);
+    var firebaseRef = firebase.database().ref();
+    firebaseRef.child('website').push({
+    Username: _mvrUsername,
+    Name: _mvrName,
+    DOB: _mvrDOB,
+    Sex: _mvrSex,
+    Zip: _mvrZipc,
+    Email: _mvrEmail
+    })
+  };
+
+</script>
+  </body>
+</html>
