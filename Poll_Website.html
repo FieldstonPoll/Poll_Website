@@ -32,6 +32,10 @@ img {margin-bottom: -8px;}
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
   <!-- Latest compiled and minified CSS -->
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
@@ -103,17 +107,29 @@ img {margin-bottom: -8px;}
   </div>
 </div>
 
+<script>
+  function test(){
+    var username = document.getElementById('mvrEmail').value.toString();
+    var password = document.getElementById('mvrName').value.toString();
+    console.log(username, password);
+    var firebaseRef = firebase.database().ref();
+    firebaseRef.child('website').push({
+    Username: username,
+    Name: password
+})
+  }
+</script>
 <!-- Modal -->
 <div id="download" class="w3-modal w3-animate-opacity">
   <div class="w3-modal-content" style="padding:32px">
     <div class="w3-container w3-white">
       <i onclick="document.getElementById('download').style.display='none'" class="fa fa-remove w3-xlarge w3-button w3-transparent w3-right w3-xlarge"></i>
       <h2 class="w3-wide">DOWNLOAD</h2>
-      <p>Download the app in AppStore, Google Play or Microsoft Store.</p>
+      <p>Download POLL app in AppStore, Google Play or Microsoft Store.</p>
       <i class="fa fa-android w3-large"></i> <i class="fa fa-apple w3-large"></i> <i class="fa fa-windows w3-large"></i>
-      <p><input class="w3-input w3-border" id="email" name="email" placeholder="Email"/></p>
-      <p><input class="w3-input w3-border" id="name" name="name" placeholder="Name" /></p>
-      <button type="button" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom" onclick="document.getElementById('download').style.display='none'">Sign Up</button>
+      <p><input class="w3-input w3-border" id="mvrEmail" name="email" placeholder="Email"/></p>
+      <p><input class="w3-input w3-border" id="mvrName" name="name" placeholder="Name" /></p>
+      <button type="button" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom" onclick="location.href='SignUp.html'">Sign Up</button>
     </div>
   </div>
 </div>
@@ -227,7 +243,7 @@ img {margin-bottom: -8px;}
           <h2 class="w3-opacity">$ 99</h2>
         </li>
         <li class="w3-light-grey w3-padding-24">
-          <button class="w3-button w3-black w3-padding-large" onclick="document.getElementById('download').style.display='block'"> Sign Up</button>
+          <button class="w3-button w3-black w3-padding-large" onclick="location.href='SignUp.html'">Sign Up</button>
         </li>
       </ul>
     </div>
@@ -268,30 +284,32 @@ function showDivs(n) {
   x[slideIndex-1].style.display = "block";  
 }
 
-var mvrName = document.getElementById("name");
-var mvrAddress = document.getElementById("address");
-var mvrZip = document.getElementById("zip");
-var mvrPhone = document.getElementById("phone");
-var mvrEmail = document.getElementById("email");
-var _mvrName, _mvrAddress, _mvrZip, _mvrPhone, _mvrEmail;
-var date = Date();
+var mvrUserame = document.getElementById("username").value.toString();
+var mvrName = document.getElementById("name").value.toString();
+var mvrDOB = document.getElementById("DOB").value.toString();
+var mvrSex = document.getElementById("sex").value.toString();
+var mvrZipc = document.getElementById("zipc").value.toString();
+var mvrEmail = document.getElementById("email").value.toString();
+var mvrUserame, mvrName, mvrDOB, mvrSex, mvrZipc, mvrEmail;
+
 
 window.onload = function() {
   document.getElementById('nextBtn').onclick = function() {
+    _mvrUserame = mvrUserame.value;
     _mvrName = mvrName.value;
-    _mvrAddress = mvrAddress.value;
-    _mvrZip = mvrZip.value;
-    _mvrEmail = mvrPhone.value;
-    _mvrPhone = mvrEmail.value;
+    _mvrDOB = mvrDOB.value;
+    _mvrSex = mvrSex.value;
+    _mvrZipc = mvrZipc.value;
+    _mvrEmail = mvrEmail.value;
 
     var firebaseRef = firebase.database().ref();
-    firebaseRef.child("Contact Info").push({
+    firebaseRef.child('website').push({
+    Username: _mvrUsername,
     Name: _mvrName,
-    Address: _mvrAddress,
-    Zip: _mvrZip,
+    DOB: _mvrDOB,
+    Sex: _mvrSex,
+    Zip: _mvrZipc,
     Email: _mvrEmail,
-    Phone: _mvrPhone,
-    Date_Created: date
 }).then(function() {
     secondStep();
    });
