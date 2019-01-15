@@ -28,6 +28,7 @@
             messagingSenderId: "774262351794"
       };
       firebase.initializeApp(config);
+
   </script>
   </head>
 
@@ -52,41 +53,42 @@
           <input type="checkbox" value="remember-me"> Remember me
         </label>
       </div>
-      <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="Userinfo();" >Sign up</button>
-      <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
+      <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
     </form>
 
 <script>
-var mvrUsername = document.getElementById("username").value.toString();
-var mvrName = document.getElementById("name").value.toString();
-var mvrDOB = document.getElementById("DOB").value.toString();
-var mvrSex = document.getElementById("sex").value.toString();
-var mvrZipc = document.getElementById("zipc").value.toString();
-var mvrEmail = document.getElementById("email").value.toString();
-var mvrPwd = document.getElementById("password").value.toString();
-var _mvrUsername, _mvrName, _mvrDOB, _mvrSex, _mvrZipc, _mvrEmail;
+
 
 
 function Userinfo() {
-    _mvrUsername = mvrUsername.value;
+    /*_mvrUsername = mvrUsername.value;
     _mvrName = mvrName.value;
     _mvrDOB = mvrDOB.value;
     _mvrSex = mvrSex.value;
     _mvrZipc = mvrZipc.value;
-    _mvrEmail = mvrEmail.value;
+    _mvrEmail = mvrEmail.value;*/
+
+    var Username = document.getElementById('mvrUsername').value.toString();
+    var Name = document.getElementById('mvrName').value.toString();
+    var DOB = document.getElementById('mvrDOB').value.toString();
+    var Sex = document.getElementById('mvrSex').value.toString();
+    var Zipc = document.getElementById('mvrZipc').value.toString();
+    var Email = document.getElementById('mvrEmail').value.toString();
+    // var password = document.getElementById('mvrPwd').value.toString();
     
-    console.log(_mvrUsername, _mvrName, _mvrDOB, _mvrSex, _mvrZipc, _mvrEmail);
+    console.log(Username, Name, DOB, Sex, Zipc, Email);
     var firebaseRef = firebase.database().ref();
     firebaseRef.child('website').push({
-    Username: _mvrUsername,
-    Name: _mvrName,
-    DOB: _mvrDOB,
-    Sex: _mvrSex,
-    Zip: _mvrZipc,
-    Email: _mvrEmail
+    Username: Username,
+    Name: Name,
+    DOB: DOB,
+    Sex: Sex,
+    Zip: Zipc,
+    Email: Email
     })
   };
 
 </script>
+      <button class="btn btn-lg btn-primary btn-block" type="button" onclick="Userinfo();" >Sign up</button>
   </body>
 </html>
